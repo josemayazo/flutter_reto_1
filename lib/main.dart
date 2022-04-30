@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pageOne.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Container(
-        child: Text("Hola mundo!")
-      ),
+      home: PageOne()
     );
   }
 }
