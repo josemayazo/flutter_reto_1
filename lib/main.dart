@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'pageOne.dart';
+// import 'pageOne.dart';
+import "page_two.dart";
 
 void main() {
   runApp(const MyApp());
@@ -10,10 +11,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'First Challenger',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: PageOne());
+      debugShowCheckedModeBanner: false,
+      title: 'First Challenger',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      // home: PageOne());
+      home: PageTwo(),
+    );
   }
 }
