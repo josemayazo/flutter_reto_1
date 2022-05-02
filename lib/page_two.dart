@@ -4,10 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:reto_1/utils/custom_colors.dart';
 
 class PageTwo extends StatelessWidget {
-  PageTwo({Key? key}) : super(key: key);
+  const PageTwo({Key? key}) : super(key: key);
+
+  List getSongList() {
+    List<Song> songList = [];
+    songList.add(Song("No tears left to  cry", "05:20"));
+    songList.add(Song("Imagine", "03:20"));
+    songList.add(Song("Into you", "04:12"));
+    songList.add(Song("One last time", "05:20"));
+    songList.add(Song("Just look up", "03:27"));
+    songList.add(Song("pov", "03:22"));
+    songList.add(Song("34+35", "03:41"));
+    return songList;
+  }
 
   @override
   Widget build(BuildContext context) {
+    List songList = getSongList();
     var mediaQuery = MediaQuery.of(context);
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -27,16 +40,16 @@ class PageTwo extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: albumSceenBody(mediaQuery),
+      body: albumSceenBody(mediaQuery, songList),
     );
   }
 }
 
-Widget albumSceenBody(MediaQueryData mediaQuery) {
+Widget albumSceenBody(MediaQueryData mediaQuery, songList) {
   return Column(
     children: [
       albumCover(mediaQuery),
-      albumSongList(mediaQuery),
+      albumSongList(mediaQuery, songList),
     ],
   );
 }
@@ -120,7 +133,7 @@ Widget albumAutor() {
   );
 }
 
-Widget albumSongList(MediaQueryData mediaQuery) {
+Widget albumSongList(MediaQueryData mediaQuery, songList) {
   return Expanded(
     flex: 40,
     child: Container(
@@ -130,11 +143,15 @@ Widget albumSongList(MediaQueryData mediaQuery) {
         child: Column(
           children: [
             albumListTitle(),
-            Column(
-              children: [
-                songItem("asdw", "04:24"),
-                songItem("Modelame así pose", "01:24"),
-              ],
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    for (var song in songList)
+                      songItem(song.getName, song.getDuration)
+                  ],
+                ),
+              ),
             )
           ],
         ),
@@ -181,15 +198,16 @@ Widget songItem(String songName, String songDuration) {
       children: [
         Text(
           songName,
-          style: TextStyle(color: Colors.black38, fontWeight: FontWeight.w500),
+          style: const TextStyle(
+              color: Colors.black38, fontWeight: FontWeight.w500),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               songDuration,
-              style:
-                  TextStyle(color: Colors.black38, fontWeight: FontWeight.w500),
+              style: const TextStyle(
+                  color: Colors.black38, fontWeight: FontWeight.w500),
             ),
             IconButton(
               onPressed: () {},
